@@ -1,0 +1,27 @@
+class Solution {
+    public String addBinary(String a, String b) {
+        StringBuilder answer = new StringBuilder();
+
+        int i = a.length() - 1;
+        int j = b.length() - 1;
+        int carryBit = 0;
+
+        while (i >= 0 || j >= 0 || carryBit != 0) {
+
+            int total = carryBit;
+
+            if (i >= 0) {
+                total += a.charAt(i) - '0';
+                i--;
+            }
+            if (j >= 0) {
+                total += b.charAt(j) - '0';
+                j--;
+            }
+            answer.append(total % 2);
+            carryBit = total / 2;
+        }
+         return answer.reverse().toString();
+    }
+}
+    
