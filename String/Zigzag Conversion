@@ -1,0 +1,24 @@
+class Solution {
+    public String convert(String s, int numRows) {
+         if (numRows == 1) return s;
+
+        StringBuilder answer = new StringBuilder();
+        int cycle = 2 * numRows - 2;
+        int len = s.length();
+
+        for (int r = 0; r < numRows; r++) {
+
+            for (int i = 0; i + r < len; i += cycle) {
+
+                answer.append(s.charAt(i + r));
+
+                if (r != 0 && r != numRows - 1
+                        && i + cycle - r < len) {
+                    answer.append(s.charAt(i + cycle - r));
+                }
+            }
+        }
+
+        return answer.toString();
+    }
+}
