@@ -1,0 +1,38 @@
+class Solution {
+    public int myAtoi(String s) {
+        long value = 0;
+        boolean isNegative = false;
+        int i = 0;
+
+        while (i < s.length() && s.charAt(i) == ' ')
+            i++;
+
+        if (i < s.length() && s.charAt(i) == '-') {
+            isNegative = true;
+            i++;
+        } else if (i < s.length() && s.charAt(i) == '+') {
+            i++;
+        }
+
+        while (i < s.length() && Character.isDigit(s.charAt(i))) {
+
+            int ascii = s.charAt(i) - '0';
+            value = value * 10 + ascii;
+
+            if (isNegative) {
+                if (value * (-1) < Integer.MIN_VALUE)
+                    return Integer.MIN_VALUE;
+            } else {
+                if (value > Integer.MAX_VALUE)
+                    return Integer.MAX_VALUE;
+            }
+
+            i++;
+        }
+
+        if (value == 0)
+            return 0;
+        else
+            return isNegative ? (int) value * (-1) : (int) value;
+    }
+}
